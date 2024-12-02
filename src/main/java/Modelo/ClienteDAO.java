@@ -19,8 +19,8 @@ public class ClienteDAO {
     ResultSet rs;
     int r;
 
-    // Método para validar un cliente por su id y DNI
-    public Cliente validar(int idCliente, String dni) {
+    
+    /*public Cliente validar(int idCliente, String dni) {
         Cliente cli = new Cliente();
         String sql = "select * from cliente where IdCliente=? and Dni=?";
         try {
@@ -39,7 +39,28 @@ public class ClienteDAO {
         } catch (Exception e) {
         }
         return cli;
+    }*/
+    
+    
+    public Cliente buscar (String dni){
+        Cliente cli=new Cliente();
+        String sql="select * from cliente where Dni="+dni;
+        try {
+            con=cn.Conexion();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while (rs.next()) {
+                cli.setIdCliente(rs.getInt(1));
+                cli.setDnic(rs.getString(2));
+                cli.setNombresc(rs.getString(3));
+                cli.setDireccion(rs.getString(4));
+                cli.setEstadoc(rs.getString(5));
+            }
+        } catch (Exception e){
+        }
+        return cli;
     }
+
 
     // Método para listar todos los clientes
     public List<Cliente> listar() {

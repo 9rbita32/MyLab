@@ -18,7 +18,7 @@ public class EmpleadoDAO {
     public Empleado validar(String user, String dni) {
         Empleado em = new Empleado();
         String sql = "select * from empleado where user=? and Dni=?";
-     
+
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -60,8 +60,8 @@ public class EmpleadoDAO {
         return lista;
     }
 
-    public int agregar(Empleado em) {
-        String sql = "insert into empleado(Dni, Nombres, Telefono, Estado, User)values(?,?,?,?;?)";
+       public int agregar(Empleado em) {
+        String sql = "insert into empleado(Dni, Nombres, Telefono, Estado, User)values(?,?,?,?,?)";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -75,11 +75,12 @@ public class EmpleadoDAO {
         }
         return r;
 
-    }
-
+       }
+       
+       
     public Empleado listarId(int id) {
         Empleado emp = new Empleado();
-        String sql = "select * from empleado where IdEmpleado="+ id;
+        String sql = "select * from empleado where IdEmpleado=" + id;
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);

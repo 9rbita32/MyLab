@@ -15,26 +15,27 @@
     </head>
     <body>
         <div class="d-flex">
-            <div class="card col-sm-6">
+            <div class="card">
                 <div class="card-body">
-                    <form action="Controlador" method="POST">
+                    <form action="Controlador?menu=Clientes" method="POST">
                         <div class="form-group">
                             <label>DNI</label>
-                            <input type="text" name="txtDni" class="form-control" required>
+                            <input type="text" value="${cliente.getDnic()}" name="txtDni" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Nombres</label>
-                            <input type="text" name="txtNombres" class="form-control" required>
+                            <input type="text" value="${cliente.getNombresc()}" name="txtNombres" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Dirección</label>
-                            <input type="text" name="txtDireccion" class="form-control" required>
+                            <input type="text" value="${cliente.getDireccion()}" name="txtDireccion" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Estado</label>
-                            <input type="text" name="txtEstado" class="form-control" required>
+                            <input type="text" value="${cliente.getEstadoc()}" name="txtEstado" class="form-control">
                         </div>
                         <input type="submit" name="accion" value="Agregar" class="btn btn-info">
+                        <input type="submit" name="accion" value="Actualizar" class="btn btn-success">
                     </form>
                 </div>
             </div>
@@ -47,6 +48,7 @@
                             <th>Nombres</th>
                             <th>Dirección</th>
                             <th>Estado</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,8 +60,8 @@
                                 <td>${cliente.direccion}</td>
                                 <td>${cliente.estadoc}</td>
                                 <td>
-                                    <a href="Controlador?menu=Cliente&accion=Editar&id=${cliente.idCliente}" class="btn btn-warning">Editar</a>
-                                    <a href="Controlador?menu=Cliente&accion=Eliminar&id=${cliente.idCliente}" class="btn btn-danger">Eliminar</a>
+                                    <a href="Controlador?menu=Clientes&accion=Editar&id=${cliente.idCliente}" class="btn btn-warning">Editar</a>
+                                    <a href="Controlador?menu=Clientes&accion=Eliminar&id=${cliente.idCliente}" class="btn btn-danger">Eliminar</a>
                                 </td>
                             </tr>
                         </c:forEach>

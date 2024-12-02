@@ -31,7 +31,7 @@
                             <label>Password</label>
                             <input type="password" name="txtpass" class="form-control">
                         </div>
-                        <input type="submit" name="accion" value="Ingresar" class="btn btn-primary btn-b">
+                        <input type="submit" name="accion" value="Ingresar" class="btnr btn-primaryr btn-blockr">
                     </form>
                     <%
                String error = (String) request.getAttribute("error");

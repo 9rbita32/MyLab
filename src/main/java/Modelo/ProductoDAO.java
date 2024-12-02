@@ -18,9 +18,40 @@ public class ProductoDAO {
     PreparedStatement ps;
     ResultSet rs;
     int r;
+    
+    public Producto buscar (int id) {
+        Producto prod = new Producto();
+        String sql="select * from producto where IdProducto="+id;
+        try {
+            con=cn.Conexion();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while (rs.next()) {
+                prod.setIdProducto(rs.getInt(1));
+                prod.setNombres(rs.getString(2));
+                prod.setPrecio(rs.getString(3));
+                prod.setStock(rs.getString(4));
+                prod.setEstado(rs.getString(5));
+            }
+        } catch (Exception e) {
+        }
+        return prod;
+    }
+    public int actualizarstock( int IdProducto, int stock) {
+        String sql="update producto set Stock=? where IdProducto=?";
+        try {
+            con=cn.Conexion();
+            ps=con.prepareStatement(sql);
+            ps.setInt(1, stock);
+            ps.setInt(2, IdProducto);
+            ps.executeUpdate();
+        } catch (Exception e){
+        }
+        return r;
+    }
 
     // Método para validar un producto por su id y nombre
-    public Producto validar(int idProducto, String nombre) {
+    /*public Producto validar(int idProducto, String nombre) {
         Producto prod = new Producto();
         String sql = "select * from producto where IdProducto=? and Nombres=?";
         try {
@@ -39,7 +70,7 @@ public class ProductoDAO {
         } catch (Exception e) {
         }
         return prod;
-    }
+    }*/
 
     // Método para listar todos los productos
     public List<Producto> listar() {
@@ -65,7 +96,7 @@ public class ProductoDAO {
 
     // Método para agregar un nuevo producto
     public int agregar(Producto prod) {
-        String sql = "insert into producto(Nombre, Precio, Stock, Estado) values(?,?,?,?)";
+        String sql = "insert into producto(Nombres, Precio, Stock, Estado) values(?,?,?,?)";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -101,7 +132,7 @@ public class ProductoDAO {
 
     // Método para actualizar un producto
     public int actualizar(Producto prod) {
-        String sql = "update producto set Nombre=?, Precio=?, Stock=?, Estado=? where IdProducto=?";
+        String sql = "update producto set Nombres=?, Precio=?, Stock=?, Estado=? where IdProducto=?";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);

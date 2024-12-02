@@ -14,26 +14,27 @@
     </head>
     <body>
         <div class="d-flex">
-            <div class="card col-sm-6">
+            <div class="card">
                 <div class="card-body">
-                    <form action="Controlador" method="POST">
+                    <form action="Controlador?menu=Producto" method="post">
                         <div class="form-group">
                             <label>Nombre</label>
-                            <input type="text" name="txtNombre" class="form-control" required>
+                            <input type="text" value="${producto.getNombres()}" name="txtNombre" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Precio</label>
-                            <input type="text" name="txtPrecio" class="form-control" required>
+                            <input type="text" value="${producto.getPrecio()}" name="txtPrecio" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Stock</label>
-                            <input type="text" name="txtStock" class="form-control" required>
+                            <input type="text" value="${producto.getStock()}" name="txtStock" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Estado</label>
-                            <input type="text" name="txtEstado" class="form-control" required>
+                            <input type="text" value="${producto.getEstado()}" name="txtEstado" class="form-control">
                         </div>
                         <input type="submit" name="accion" value="Agregar" class="btn btn-info">
+                        <input type="submit" name="accion" value="Actualizar" class="btn btn-success">
                     </form>
                 </div>
             </div>
@@ -57,8 +58,8 @@
                                 <td>${producto.stock}</td>
                                 <td>${producto.estado}</td>
                                 <td>
-                                    <a href="Controlador?menu=Producto&accion=Editar&id=${producto.idProducto}" class="btn btn-warning">Editar</a>
-                                    <a href="Controlador?menu=Producto&accion=Eliminar&id=${producto.idProducto}" class="btn btn-danger">Eliminar</a>
+                                    <a class="btn btn-warning" href="Controlador?menu=Producto&accion=Editar&id=${producto.getIdProducto()}">Editar</a>
+                                    <a class="btn btn-danger" href="Controlador?menu=Producto&accion=Eliminar&id=${producto.getIdProducto()}">Eliminar</a>
                                 </td>
                             </tr>
                         </c:forEach>
